@@ -1,0 +1,40 @@
+#include <iostream>
+
+class Hesap {
+private:
+  long   hesapno;
+  short  hesapturu; // 0: vadeli 1: vadesiz
+  double bakiye;
+
+public:
+  Hesap();   // varsayılan yapılandırıcı
+  double getBakiye();
+  double paraYatir(double _tutar);
+  double paraCek(double _tutar);
+};
+
+Hesap::Hesap() : hesapno(0), hesapturu(1), bakiye(0.0) {}
+
+double Hesap::getBakiye() {
+  return bakiye;
+}
+
+double Hesap::paraYatir(double _tutar) {
+  if (_tutar > 0) {
+    bakiye += _tutar;
+    std::cout << "Para yatirildi. Yeni bakiye: " << bakiye << std::endl;
+  } else {
+    std::cout << "Gecersiz tutar. Para yatirilamadi." << std::endl;
+  }
+  return bakiye;
+}
+
+double Hesap::paraCek(double _tutar) {
+  if (_tutar > 0 && bakiye >= _tutar) {
+    bakiye -= _tutar;
+    std::cout << "Para cekildi. Yeni bakiye: " << bakiye << std::endl;
+  } else {
+    std::cout << "Gecersiz tutar veya yetersiz bakiye. Para cekilemedi." << std::endl;
+  }
+  return bakiye;
+}
